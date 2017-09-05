@@ -1,0 +1,355 @@
+package domain;
+
+
+import userProfile.User;
+
+import javax.persistence.*;
+import java.util.Date;
+
+
+@Entity // Указание что данная сущность которая сохраняеться в БД, без анотации не сработает
+@Table(name = "users")
+public class UserEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO) //Автоматическая генерация ID
+    private long id;
+
+    private long rating;
+    private long fbId;
+
+    private int gender;
+    private int age;
+    private int active;
+
+    private String email;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String sexOrientation;
+    private String longitude;
+    private String latitude;
+    private String city;
+    private String country;
+    private String avatar;
+    private String photos;
+    private String bio;
+    private String tags;
+    private Date birthdate;
+    private Date lastVisit;
+
+
+
+    public UserEntity() {
+    }
+
+//    public UserProfile() {
+//        this.email = "";
+//        this.password = "";
+//        this.firstName = "";
+//        this.lastName = "";
+//        this.longitude = "";
+//        this.latitude = "";
+//        this.city = "";
+//        this.country = "";
+//        this.gender = 0;
+//        this.age = 0;
+//        this.id = 0;
+//        this.photo = "";
+//        this.fbId = "0";
+//        this.active = 0;
+//    }
+
+
+//    public UserProfile(String email) {
+//        this.email = email;
+//    }
+//
+//
+//    public UserProfile(String email, String password) {
+//        this.email = email;
+//        this.password = password;
+//    }
+//
+//    public UserProfile(long id, String email, String firstName, String lastName, int gender, int age) {
+//        this.id = id;
+//        this.email = email;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.gender = gender;
+//        this.age = age;
+//    }
+//
+//    public UserProfile(String email, String password, String firstName, String lastName, String longitude, String latitude, String city, String country, int gender, int age, long id) {
+//        this.email = email;
+//        this.password = password;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.longitude = longitude;
+//        this.latitude = latitude;
+//        this.city = city;
+//        this.country = country;
+//        this.gender = gender;
+//        this.age = age;
+//        this.id = id;
+//    }
+//
+//
+//    public UserProfile(String email, String password, String firstName, String lastName, String longitude, String latitude, String city, String country, int gender, int age, long id, String photo, String fbId, int active) {
+//        this.email = email;
+//        this.password = password;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.longitude = longitude;
+//        this.latitude = latitude;
+//        this.city = city;
+//        this.country = country;
+//        this.gender = gender;
+//        this.age = age;
+//        this.id = id;
+//        this.fbId = fbId;
+//        this.photo = photo;
+//        this.active = active;
+//
+//    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public long getFbId() {
+        return fbId;
+    }
+
+    public void setFbId(long fbId) {
+        this.fbId = fbId;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+
+    public long getRating() {
+        return rating;
+    }
+
+    public void setRating(long rating) {
+        this.rating = rating;
+    }
+
+    public String getSexOrientation() {
+        return sexOrientation;
+    }
+
+    public void setSexOrientation(String sexOrientation) {
+        this.sexOrientation = sexOrientation;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(String photos) {
+        this.photos = photos;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public Date getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public Date getLastVisit() {
+        return lastVisit;
+    }
+
+    public void setLastVisit(Date lastVisit) {
+        this.lastVisit = lastVisit;
+    }
+
+    //    @Override
+//    public String toString() {
+//        return "E-mail: " + getEmail() + "\n" +
+//                "Password: " + getPassword() + "\n" +
+//                "FirstName: " + getFirstName() + "\n" +
+//                "LastName: " + getLastName() + "\n" +
+//                "Gender: " + getGender() + "\n" +
+//                "Age: " + getAge() + "\n" +
+//                "latitude: " + getLatitude() + "\n" +
+//                "longitude: " + getLongitude() + "\n" +
+//                "country: " + getCountry() + "\n" +
+//                "city: " + getCity() + "\n" +
+//                "Photo: " + getPhoto() + "\n" +
+//                "FB_ID: " + getFbId() + "\n" +
+//                "Active ? : " + getActive() + "\n" +
+//                "ID: " + getId() + "\n";
+//    }
+
+    public User toDto() {
+        User user = new User();
+
+        user.setEmail(this.getEmail());
+        user.setPassword(this.getPassword());
+        user.setFirstName(this.getFirstName());
+        user.setLastName(this.getLastName());
+        user.setGender(this.getGender());
+        user.setAge(this.getAge());
+        user.setId(this.getId());
+        user.setFbId(this.getFbId());
+        user.setCity(this.getCity());
+        user.setCountry(this.getCountry());
+        user.setPhotos(this.getPhotos());
+        user.setLatitude(this.getLatitude());
+        user.setLongitude(this.getLongitude());
+        user.setActive(this.getActive());
+        user.setSexOrientation(this.getSexOrientation());
+        user.setRating(this.getRating());
+        user.setAvatar(this.getAvatar());
+        user.setBio(this.getBio());
+        user.setTags(this.getTags());
+        user.setBirthdate(this.getBirthdate());
+        user.setLastVisit(this.getLastVisit());
+
+        return user;
+    }
+
+    public void fromDto(User user) {
+
+        this.setEmail(user.getEmail());
+        this.setPassword(user.getPassword());
+        this.setFirstName(user.getFirstName());
+        this.setLastName(user.getLastName());
+        this.setGender(user.getGender());
+        this.setAge(user.getAge());
+        this.setId(user.getId());
+        this.setFbId(user.getFbId());
+        this.setCity(user.getCity());
+        this.setCountry(user.getCountry());
+        this.setPhotos(user.getPhotos());
+        this.setLatitude(user.getLatitude());
+        this.setLongitude(user.getLongitude());
+        this.setActive(user.getActive());
+        this.setSexOrientation(user.getSexOrientation());
+        this.setRating(user.getRating());
+        this.setAvatar(user.getAvatar());
+        this.setBio(user.getBio());
+        this.setTags(user.getTags());
+        this.setBirthdate(user.getBirthdate());
+        this.setLastVisit(user.getLastVisit());
+
+    }
+}
