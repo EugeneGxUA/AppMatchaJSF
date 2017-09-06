@@ -2,7 +2,7 @@ package services;
 
 
 import dbService.UserManagerBean;
-import domain.UserEntity;
+import auth.domain.UserEntity;
 import userProfile.User;
 
 import javax.ejb.EJB;
@@ -17,21 +17,9 @@ import java.util.List;
 public class UsersListBean implements Serializable {
 
     @EJB
-    private UserManagerBean usersManagerBean;
-
-    private User user = new User();
+    private UserManagerBean userManagerBean;
 
     public List<User> getUsers() {
-        List<User> result = new ArrayList<>();
-        List<UserEntity> entities = usersManagerBean.readList(0, 100);
-
-        for (UserEntity userEntity: entities) {
-            result.add(userEntity.toDto());
-        }
-
-        return result;
+        return userManagerBean.readList(0, 100);
     }
-
-
-
 }

@@ -2,14 +2,16 @@ package dbService;
 
 
 import org.apache.commons.lang3.StringUtils;
-import domain.UserEntity;
-import org.hibernate.SessionFactory;
+import auth.domain.UserEntity;
+import userProfile.User;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,45 +20,53 @@ import java.util.List;
 public class UserManagerBean {
 
 
-    @PersistenceContext(unitName = "dbConnection")
+    @Inject
     private EntityManager entityManager;
 
     // CRUD
 
-    public boolean create(UserEntity userProfile) {
-        if (!checkValid(userProfile)) {
+    public boolean create(User user) {
+        if (!checkValid(user)) {
             return false;
         }
 
-        UserEntity existingUserProfile = entityManager.find(UserEntity.class, userProfile.getEmail());
+        UserEntity existingUserProfile = entityManager.find(UserEntity.class, user.getEmail());
         if (existingUserProfile != null) {
             return false;
         }
 
-        entityManager.persist(userProfile);
+        existingUserProfile = new UserEntity();
+        existingUserProfile.fromDto(user);
+        entityManager.persist(existingUserProfile);
         return true;
     }
 
 
-    public UserEntity read (String email) {
+    public User read (String email) {
+        UserEntity userEntity = entityManager.find(UserEntity.class, email);
+        if (userEntity == null) {
+            return null;
+        }
+
         if (StringUtils.isEmpty(email)) {
             return null;
         }
 
-        return entityManager.find(UserEntity.class, email);
+        return userEntity.toDto();
     }
 
-    public boolean update(UserEntity userProfile) {
-        if (!checkValid(userProfile)) {
+    public boolean update(User user) {
+        if (!checkValid(user)) {
             return false;
         }
 
-        UserEntity existingUserProfile = entityManager.find(UserEntity.class, userProfile.getEmail());
+        UserEntity existingUserProfile = entityManager.find(UserEntity.class, user.getEmail());
         if (existingUserProfile == null) {
             return false;
         }
 
-        entityManager.merge(userProfile);
+        existingUserProfile.fromDto(user);
+        entityManager.merge(existingUserProfile);
         return true;
     }
 
@@ -69,7 +79,7 @@ public class UserManagerBean {
         return true;
     }
 
-    public List<UserEntity> readList(int offset, int limit ){
+    public List<User> readList(int offset, int limit ){
         if (offset < 0 || limit < 1) {
             return Collections.emptyList();
         }
@@ -79,10 +89,19 @@ public class UserManagerBean {
         query.setFirstResult(offset);
         query.setMaxResults(limit);
 
-        return query.getResultList();
+        List<UserEntity> userEntities = query.getResultList();
+        if (userEntities == null || userEntities.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        List<User> result = new ArrayList<User>(userEntities.size());
+        for (UserEntity userEntity : userEntities) {
+            result.add(userEntity.toDto());
+        }
+        return result;
     }
 
-    private boolean checkValid(UserEntity userProfile) {
-        return userProfile != null || !StringUtils.isEmpty(userProfile.getEmail());
+    private boolean checkValid(User user) {
+        return user != null || !StringUtils.isEmpty(user.getEmail());
     }
 }

@@ -1,15 +1,33 @@
-package domain;
+package auth.domain;
 
 
 import userProfile.User;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity // Указание что данная сущность которая сохраняеться в БД, без анотации не сработает
 @Table(name = "users")
 public class UserEntity {
+
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "user")
+    private List<PersonRoleEntity> personRoleEntities;
+
+    public List<PersonRoleEntity> getPersonRoleEntities() {
+        return personRoleEntities;
+    }
+
+    public void setPersonRoleEntities(List<PersonRoleEntity> personRoleEntities) {
+        this.personRoleEntities = personRoleEntities;
+    }
+
+
+
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) //Автоматическая генерация ID
@@ -20,7 +38,8 @@ public class UserEntity {
 
     private int gender;
     private int age;
-    private int active;
+
+    private boolean active;
 
     private String email;
     private String password;
@@ -209,11 +228,11 @@ public class UserEntity {
         this.fbId = fbId;
     }
 
-    public int getActive() {
+    public boolean isActive() {
         return active;
     }
 
-    public void setActive(int active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 
@@ -315,7 +334,7 @@ public class UserEntity {
         user.setPhotos(this.getPhotos());
         user.setLatitude(this.getLatitude());
         user.setLongitude(this.getLongitude());
-        user.setActive(this.getActive());
+        user.setActive(this.isActive());
         user.setSexOrientation(this.getSexOrientation());
         user.setRating(this.getRating());
         user.setAvatar(this.getAvatar());
@@ -342,7 +361,7 @@ public class UserEntity {
         this.setPhotos(user.getPhotos());
         this.setLatitude(user.getLatitude());
         this.setLongitude(user.getLongitude());
-        this.setActive(user.getActive());
+        this.setActive(user.isActive());
         this.setSexOrientation(user.getSexOrientation());
         this.setRating(user.getRating());
         this.setAvatar(user.getAvatar());

@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="AppMatchaJSF" />
         <module name="MatchaJSF" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="AppMatchaJSF" target="1.8" />
       <module name="MatchaJSF" target="1.8" />
     </bytecodeTargetLevel>
   </component>

@@ -1,8 +1,14 @@
-package userProfile;
+package auth;
 
+
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+@Named
+@SessionScoped
+public class UserBean implements Serializable {
 
     private long id;
     private long rating;
@@ -10,7 +16,6 @@ public class User {
 
     private int gender;
     private int age;
-
 
     private boolean active;
 
@@ -31,12 +36,6 @@ public class User {
     private Date lastVisit;
 
 
-
-
-
-
-
-
     public long getId() {
         return id;
     }
@@ -45,68 +44,12 @@ public class User {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public long getRating() {
+        return rating;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
+    public void setRating(long rating) {
+        this.rating = rating;
     }
 
     public long getFbId() {
@@ -141,12 +84,36 @@ public class User {
         this.active = active;
     }
 
-    public long getRating() {
-        return rating;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRating(long rating) {
-        this.rating = rating;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getSexOrientation() {
@@ -155,6 +122,38 @@ public class User {
 
     public void setSexOrientation(String sexOrientation) {
         this.sexOrientation = sexOrientation;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getAvatar() {
@@ -203,30 +202,5 @@ public class User {
 
     public void setLastVisit(Date lastVisit) {
         this.lastVisit = lastVisit;
-    }
-
-    @Override
-    public String toString() {
-        return "E-mail: " + getEmail() + "\n" +
-                "Password: " + getPassword() + "\n" +
-                "FirstName: " + getFirstName() + "\n" +
-                "LastName: " + getLastName() + "\n" +
-                "Gender: " + getGender() + "\n" +
-                "Orientation: " + getSexOrientation() + "\n" +
-                "Rating: " + getRating() + "\n" +
-                "Avatar: " + getAvatar() + "\n" +
-                "Photos: " + getPhotos() + "\n" +
-                "BIO: " + getBio() + "\n" +
-                "Interests: " + getTags() + "\n" +
-                "Birth Date: " + getBirthdate() + "\n" +
-                "Last Online Date: " + getLastVisit() + "\n" +
-                "Age: " + getAge() + "\n" +
-                "latitude: " + getLatitude() + "\n" +
-                "longitude: " + getLongitude() + "\n" +
-                "country: " + getCountry() + "\n" +
-                "city: " + getCity() + "\n" +
-                "FB_ID: " + getFbId() + "\n" +
-                "Active ? : " + isActive() + "\n" +
-                "ID: " + getId() + "\n";
     }
 }
