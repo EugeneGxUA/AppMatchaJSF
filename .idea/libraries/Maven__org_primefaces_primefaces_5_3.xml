@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.primefaces:primefaces:5.3">
+    <CLASSES>
+      <root url="jar:///private/tmp/library.egaragul/Containers/maven/repository/org/primefaces/primefaces/5.3/primefaces-5.3.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar:///private/tmp/library.egaragul/Containers/maven/repository/org/primefaces/primefaces/5.3/primefaces-5.3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar:///private/tmp/library.egaragul/Containers/maven/repository/org/primefaces/primefaces/5.3/primefaces-5.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

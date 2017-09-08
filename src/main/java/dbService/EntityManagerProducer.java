@@ -10,7 +10,8 @@ public class EntityManagerProducer {
     private EntityManager entityManager;
 
     @Produces
-    public EntityManager createEntityManager() {
+    public EntityManager createEntityManager(){
         return entityManager;
     }
+
 }

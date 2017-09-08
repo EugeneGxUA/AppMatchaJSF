@@ -1,6 +1,7 @@
-package auth.domain;
+package domain;
 
 
+import auth.domain.PersonRoleEntity;
 import userProfile.User;
 
 import javax.persistence.*;
@@ -23,10 +24,6 @@ public class UserEntity {
     public void setPersonRoleEntities(List<PersonRoleEntity> personRoleEntities) {
         this.personRoleEntities = personRoleEntities;
     }
-
-
-
-
 
 
     @Id
@@ -56,81 +53,6 @@ public class UserEntity {
     private String tags;
     private Date birthdate;
     private Date lastVisit;
-
-
-
-    public UserEntity() {
-    }
-
-//    public UserProfile() {
-//        this.email = "";
-//        this.password = "";
-//        this.firstName = "";
-//        this.lastName = "";
-//        this.longitude = "";
-//        this.latitude = "";
-//        this.city = "";
-//        this.country = "";
-//        this.gender = 0;
-//        this.age = 0;
-//        this.id = 0;
-//        this.photo = "";
-//        this.fbId = "0";
-//        this.active = 0;
-//    }
-
-
-//    public UserProfile(String email) {
-//        this.email = email;
-//    }
-//
-//
-//    public UserProfile(String email, String password) {
-//        this.email = email;
-//        this.password = password;
-//    }
-//
-//    public UserProfile(long id, String email, String firstName, String lastName, int gender, int age) {
-//        this.id = id;
-//        this.email = email;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.gender = gender;
-//        this.age = age;
-//    }
-//
-//    public UserProfile(String email, String password, String firstName, String lastName, String longitude, String latitude, String city, String country, int gender, int age, long id) {
-//        this.email = email;
-//        this.password = password;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.longitude = longitude;
-//        this.latitude = latitude;
-//        this.city = city;
-//        this.country = country;
-//        this.gender = gender;
-//        this.age = age;
-//        this.id = id;
-//    }
-//
-//
-//    public UserProfile(String email, String password, String firstName, String lastName, String longitude, String latitude, String city, String country, int gender, int age, long id, String photo, String fbId, int active) {
-//        this.email = email;
-//        this.password = password;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.longitude = longitude;
-//        this.latitude = latitude;
-//        this.city = city;
-//        this.country = country;
-//        this.gender = gender;
-//        this.age = age;
-//        this.id = id;
-//        this.fbId = fbId;
-//        this.photo = photo;
-//        this.active = active;
-//
-//    }
 
     public String getEmail() {
         return email;

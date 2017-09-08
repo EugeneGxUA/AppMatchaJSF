@@ -1,5 +1,7 @@
 package auth.domain;
 
+import domain.UserEntity;
+
 import javax.persistence.*;
 
 @Entity

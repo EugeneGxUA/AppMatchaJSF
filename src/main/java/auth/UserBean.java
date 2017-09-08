@@ -1,8 +1,11 @@
 package auth;
 
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -18,6 +21,8 @@ public class UserBean implements Serializable {
     private int age;
 
     private boolean active;
+
+    private String initialRequestURI;
 
     private String email;
     private String password;
@@ -35,6 +40,25 @@ public class UserBean implements Serializable {
     private Date birthdate;
     private Date lastVisit;
 
+    @EJB
+    private AuthenticateBean authenticateBean;
+
+    public void doEmail() {
+        if (email == null || password == null) {
+            return;
+        }
+        active = authenticateBean.doSignIn(email, password) == AuthenticateBean.SignInResult.SUCCESS;
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect(initialRequestURI);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void doSignUp() {
+        authenticateBean.doSingUp(email, password, firstName, lastName, gender);
+    }
 
     public long getId() {
         return id;
@@ -202,5 +226,13 @@ public class UserBean implements Serializable {
 
     public void setLastVisit(Date lastVisit) {
         this.lastVisit = lastVisit;
+    }
+
+    public String getInitialRequestURI() {
+        return initialRequestURI;
+    }
+
+    public void setInitialRequestURI(String initialRequestURI) {
+        this.initialRequestURI = initialRequestURI;
     }
 }

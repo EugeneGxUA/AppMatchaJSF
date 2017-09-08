@@ -2,14 +2,13 @@ package dbService;
 
 
 import org.apache.commons.lang3.StringUtils;
-import auth.domain.UserEntity;
+import domain.UserEntity;
 import userProfile.User;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.Collections;
