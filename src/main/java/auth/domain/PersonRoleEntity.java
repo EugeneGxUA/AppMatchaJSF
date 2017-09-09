@@ -13,10 +13,11 @@ public class PersonRoleEntity {
     private long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private RoleEntity roleEntity;
+    private Role role;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private UserEntity user;
+
 
 
     public long getId() {
@@ -27,12 +28,12 @@ public class PersonRoleEntity {
         this.id = id;
     }
 
-    public RoleEntity getRoleEntity() {
-        return roleEntity;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoleEntity(RoleEntity roleEntity) {
-        this.roleEntity = roleEntity;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public UserEntity getUser() {

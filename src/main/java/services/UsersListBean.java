@@ -1,6 +1,7 @@
 package services;
 
 
+import auth.UserBean;
 import dbService.UserManagerBean;
 import userProfile.User;
 
@@ -17,7 +18,7 @@ public class UsersListBean implements Serializable {
     @EJB
     private UserManagerBean userManagerBean;
 
-    public List<User> getUsers() {
+    public List<UserBean> getUsers() {
         return userManagerBean.readList(0, 100);
     }
 }

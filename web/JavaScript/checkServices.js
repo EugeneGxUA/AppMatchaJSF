@@ -3,11 +3,14 @@ function checkSignUpForm(email, password, password1, firstName, lastName, age) {
     console.log(email.value);
     console.log(age.value);
 
-    var CurrentDate= new Date();
-    var CurrentYear = CurrentDate.getFullYear();
-    var userYear = parseInt(age.value.split("-")[0]);
 
-    var result = CurrentYear - userYear;
+    alert('PIZDEC !!!');
+
+    //var CurrentDate= new Date();
+    //var CurrentYear = CurrentDate.getFullYear();
+    //var userYear = parseInt(age.value.split("-")[0]);
+
+    //var result = CurrentYear - userYear;
 
 
     var checkEmail = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -39,5 +42,5 @@ function checkSignUpForm(email, password, password1, firstName, lastName, age) {
     }
     document.querySelector('#user-age').value = result;
 
-    return true;
+    return false;
 }

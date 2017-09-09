@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "rights")
-public class RightsEntity {
+public class Rights {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,7 +15,7 @@ public class RightsEntity {
     private ResourceEntity resourceEntity;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private RoleEntity roleEntity;
+    private Role role;
 
     public long getId() {
         return id;
@@ -33,11 +33,11 @@ public class RightsEntity {
         this.resourceEntity = resourceEntity;
     }
 
-    public RoleEntity getRoleEntity() {
-        return roleEntity;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoleEntity(RoleEntity roleEntity) {
-        this.roleEntity = roleEntity;
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

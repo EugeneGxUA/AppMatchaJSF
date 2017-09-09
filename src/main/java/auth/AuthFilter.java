@@ -1,7 +1,5 @@
 package auth;
 
-import org.apache.commons.lang3.StringUtils;
-
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.*;
@@ -15,7 +13,7 @@ import java.io.IOException;
 public class AuthFilter implements Filter {
 
     @EJB
-    private AuthenticateBean authenticateBean;
+    private SignInBean signInBean;
 
     @Inject
     private UserBean userBean;
@@ -32,22 +30,16 @@ public class AuthFilter implements Filter {
         String resource = request.getRequestURI();
 
         if (!userBean.isActive()) {
-            userBean.setInitialRequestURI(resource);
-            response.sendRedirect(request.getContextPath() + "/index.xhtml");
+            response.sendRedirect(request.getContextPath() + "/profile.xhtml");
             return;
         }
 
 
-        if (!authenticateBean.isGranted(userBean.getEmail(), resource)) {
+        if (!signInBean.isGranted(userBean.getEmail(), resource)) {
             response.sendRedirect("redirect to access denied");
             return;
         }
 
-        if (StringUtils.isNotEmpty(userBean.getInitialRequestURI())) {
-            response.sendRedirect(userBean.getInitialRequestURI());
-            userBean.setInitialRequestURI("");
-            return;
-        }
 
         filterChain.doFilter(servletRequest, servletResponse);
     }

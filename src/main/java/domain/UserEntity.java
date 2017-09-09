@@ -1,10 +1,14 @@
 package domain;
 
 
+import auth.UserBean;
 import auth.domain.PersonRoleEntity;
 import userProfile.User;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +30,7 @@ public class UserEntity {
     }
 
 
-    @Id
+
     @GeneratedValue(strategy = GenerationType.AUTO) //Автоматическая генерация ID
     private long id;
 
@@ -34,10 +38,11 @@ public class UserEntity {
     private long fbId;
 
     private int gender;
-    private int age;
+
 
     private boolean active;
 
+    @Id
     private String email;
     private String password;
     private String firstName;
@@ -51,8 +56,31 @@ public class UserEntity {
     private String photos;
     private String bio;
     private String tags;
-    private Date birthdate;
-    private Date lastVisit;
+    private LocalDate birthdate;
+    private LocalDateTime lastVisit;
+
+    public UserEntity() {
+        rating = 0;
+        fbId = 0;
+        gender = 0;
+
+        active = false;
+
+        email = "";
+        password = "";
+        firstName = "";
+        lastName = "";
+        sexOrientation = "";
+        longitude = "";
+        latitude = "";
+        city = "";
+        country = "";
+        avatar = "";
+        photos = "";
+        bio = "";
+        tags = "";
+        lastVisit = LocalDateTime.now();
+    }
 
     public String getEmail() {
         return email;
@@ -92,14 +120,6 @@ public class UserEntity {
 
     public void setGender(int gender) {
         this.gender = gender;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public long getId() {
@@ -206,19 +226,19 @@ public class UserEntity {
         this.tags = tags;
     }
 
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 
-    public Date getLastVisit() {
+    public LocalDateTime getLastVisit() {
         return lastVisit;
     }
 
-    public void setLastVisit(Date lastVisit) {
+    public void setLastVisit(LocalDateTime lastVisit) {
         this.lastVisit = lastVisit;
     }
 
@@ -240,15 +260,14 @@ public class UserEntity {
 //                "ID: " + getId() + "\n";
 //    }
 
-    public User toDto() {
-        User user = new User();
+    public UserBean toDto() {
+        UserBean user = new UserBean();
 
         user.setEmail(this.getEmail());
         user.setPassword(this.getPassword());
         user.setFirstName(this.getFirstName());
         user.setLastName(this.getLastName());
         user.setGender(this.getGender());
-        user.setAge(this.getAge());
         user.setId(this.getId());
         user.setFbId(this.getFbId());
         user.setCity(this.getCity());
@@ -268,14 +287,13 @@ public class UserEntity {
         return user;
     }
 
-    public void fromDto(User user) {
+    public void fromDto(UserBean user) {
 
         this.setEmail(user.getEmail());
         this.setPassword(user.getPassword());
         this.setFirstName(user.getFirstName());
         this.setLastName(user.getLastName());
         this.setGender(user.getGender());
-        this.setAge(user.getAge());
         this.setId(user.getId());
         this.setFbId(user.getFbId());
         this.setCity(user.getCity());

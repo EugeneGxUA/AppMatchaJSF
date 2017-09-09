@@ -1,5 +1,6 @@
 package userProfile;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class User {
@@ -27,11 +28,32 @@ public class User {
     private String photos;
     private String bio;
     private String tags;
-    private Date birthdate;
-    private Date lastVisit;
+    private LocalDate birthdate;
+    private LocalDate lastVisit;
 
 
-
+    public User() {
+        rating = 0;
+        fbId = 0;
+        gender = 0;
+        age = 0;
+        active = false;
+        email = "";
+        password = "";
+        firstName = "";
+        lastName = "";
+        sexOrientation = "";
+        longitude = "";
+        latitude = "";
+        city = "";
+        country = "";
+        avatar = "";
+        photos = "";
+        bio = "";
+        tags = "";
+        birthdate = LocalDate.now();
+        lastVisit = LocalDate.now();
+    }
 
 
 
@@ -189,19 +211,19 @@ public class User {
         this.tags = tags;
     }
 
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 
-    public Date getLastVisit() {
+    public LocalDate getLastVisit() {
         return lastVisit;
     }
 
-    public void setLastVisit(Date lastVisit) {
+    public void setLastVisit(LocalDate lastVisit) {
         this.lastVisit = lastVisit;
     }
 

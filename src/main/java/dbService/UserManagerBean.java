@@ -1,6 +1,7 @@
 package dbService;
 
 
+import auth.UserBean;
 import org.apache.commons.lang3.StringUtils;
 import domain.UserEntity;
 import userProfile.User;
@@ -20,28 +21,29 @@ public class UserManagerBean {
 
 
     @Inject
-    private EntityManager entityManager;
+    EntityManager entityManager;
 
     // CRUD
 
-    public boolean create(User user) {
+    public boolean create(UserBean user) {
         if (!checkValid(user)) {
             return false;
         }
 
         UserEntity existingUserProfile = entityManager.find(UserEntity.class, user.getEmail());
-        if (existingUserProfile != null) {
-            return false;
+        if (existingUserProfile == null) {
+            existingUserProfile = new UserEntity();
+            existingUserProfile.fromDto(user);
+            entityManager.persist(existingUserProfile);
+            return true;
         }
 
-        existingUserProfile = new UserEntity();
-        existingUserProfile.fromDto(user);
-        entityManager.persist(existingUserProfile);
-        return true;
+
+        return false;
     }
 
 
-    public User read (String email) {
+    public UserBean read (String email) {
         UserEntity userEntity = entityManager.find(UserEntity.class, email);
         if (userEntity == null) {
             return null;
@@ -54,7 +56,7 @@ public class UserManagerBean {
         return userEntity.toDto();
     }
 
-    public boolean update(User user) {
+    public boolean update(UserBean user) {
         if (!checkValid(user)) {
             return false;
         }
@@ -78,7 +80,7 @@ public class UserManagerBean {
         return true;
     }
 
-    public List<User> readList(int offset, int limit ){
+    public List<UserBean> readList(int offset, int limit ){
         if (offset < 0 || limit < 1) {
             return Collections.emptyList();
         }
@@ -93,14 +95,14 @@ public class UserManagerBean {
             return Collections.emptyList();
         }
 
-        List<User> result = new ArrayList<User>(userEntities.size());
+        List<UserBean> result = new ArrayList<UserBean>(userEntities.size());
         for (UserEntity userEntity : userEntities) {
             result.add(userEntity.toDto());
         }
         return result;
     }
 
-    private boolean checkValid(User user) {
+    private boolean checkValid(UserBean user) {
         return user != null || !StringUtils.isEmpty(user.getEmail());
     }
 }

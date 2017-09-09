@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -34,8 +33,11 @@
                                     <h:form class="login-form" method="post"> <!-- FORM SIGN IN -->
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <h:inputText value="#{userBean.email}" class="form-control"
-                                                             a:placeholder="Type your email" required="true"/>
+                                                <h:inputText id="loginEmail" value="#{userBean.email}" class="form-control"
+                                                             a:placeholder="Type your email" label="Email">
+
+                                                </h:inputText>
+
                                                 <span class="input-group-addon">
                                                     <i class="glyphicon glyphicon-user"></i>
                                                 </span>
@@ -43,8 +45,11 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <h:inputSecret value="#{userBean.password}" class="form-control"
-                                                               a:placeholder="Type your password" required="true"/>
+                                                <h:inputSecret id="loginPass" value="#{userBean.password}" class="form-control"
+                                                               a:placeholder="Type your password" label="Password">
+
+                                                </h:inputSecret>
+
                                                 <span class="input-group-addon">
                                                     <i class="glyphicon glyphicon-lock"></i>
                                                 </span>
@@ -53,7 +58,7 @@
                                         <!---->
                                         <!---->
                                         <div class="form-group sign-btn">
-                                            <h:commandButton type="submit" class="btn" value="Log in" action="#{userBean.doEmail}"/>
+                                            <h:commandButton type="submit" class="btn" action="#{userBean.doSignIn}" value="Log in" />
                                             <p><a href="#" class="forgot">Can't access your account?</a></p>
                                             <p><strong>New to TimeInfo?</strong><br/><a href="#" id="flip-btn"
                                                                                         class="signup signup_link">Sign up for a new account</a>
@@ -69,15 +74,15 @@
                                 <div class="back signup_form" style="opacity: 0;">
                                     <p>Sign Up for Your New Account</p>
                                     <p class="error"></p>
-                                    <h:form class="login-form"
-                                          onsubmit="return (checkSignUpForm(email, password, password1, firstName, lastName, birthdate))"
+                                    <h:form class="login-form" onsubmit="return (checkSignUpForm(email, password, password1, firstName, lastName, birthdate))"
                                           method="post"><!-- Button SIGN UP -->
-                                        <h:inputText id="user-age" a:type="hidden" name="age" value="#{userBean.age}"/>
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <h:inputText type="text" class="form-control"
+                                                <h:inputText name="firstName" id="signUpFirstName" class="form-control"
                                                              value="#{userBean.firstName}" a:placeholder="First Name"
-                                                             required="true"/>
+                                                              label="First name">
+                                                </h:inputText>
+
                                                 <span class="input-group-addon">
                                                     <i class="glyphicon glyphicon-user"></i>
                                                 </span>
@@ -85,9 +90,8 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <h:inputText type="text" class="form-control"
-                                                             value="#{userBean.lastName}" name="lastName"
-                                                             a:placeholder="Last Name" required="true"/>
+                                                <h:inputText name="lastName" id="signUpLastName" class="form-control"
+                                                             value="#{userBean.lastName}" a:placeholder="Last Name"  label="Last name"/>
                                                 <span class="input-group-addon">
                                                     <i class="glyphicon glyphicon-user"></i>
                                                 </span>
@@ -95,25 +99,25 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <h:inputSecret id="password" class="form-control"
-                                                               value="#{userBean.password}" type="password"
-                                                               name="password" a:placeholder="Password"
-                                                               required="true"/>
+                                                <h:inputSecret id="password" name="password" class="form-control"
+                                                               value="#{userBean.password}" a:placeholder="Password"
+                                                               label="Password"/>
 
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <h:inputSecret type="password" class="form-control" name="password1"
-                                                               a:placeholder="Confirm Password" required="true"/>
-
+                                                <h:inputSecret class="form-control" id="password1" name="password1"
+                                                               a:placeholder="Confirm Password"  label="Confirm Password">
+                                                </h:inputSecret>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <h:inputText id="signup-email" class="form-control"
                                                              value="#{userBean.email}" type="email" name="email"
-                                                             a:placeholder="E-mail" required="true"/>
+                                                             a:placeholder="E-mail"  label="Email"/>
+
                                                 <span class="input-group-addon">
                                                     <i class="glyphicon glyphicon-envelope"></i>
                                                 </span>
@@ -121,19 +125,21 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <h:selectOneRadio value="#{userBean.gender}">
+                                                <h:selectOneRadio value="#{userBean.gender}"  id="radioGender" label="Gender">
                                                     <f:selectItem itemValue="1" itemLabel="Male"/>
                                                     <f:selectItem itemValue="0" itemLabel="Female"/>
                                                 </h:selectOneRadio>
+
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <h:inputText name="birthdate" class="form-control" a:type="date" value="#{userBean.birthdate}"/>
+                                                <h:inputText id="birthdate" name="birthdate" class="form-control" value="#{userBean.birth}" a:placeholder="YYYY-MM-DD"  label="Birth Date"/>
+
                                             </div>
                                         </div>
                                         <div class="form-group sign-btn">
-                                            <h:commandButton class="btn" value="Sign up" action="#{userBean.doSignUp}"/>
+                                            <h:commandButton  action="#{userBean.doSignUp}" class="btn" value="Sign up"  type="submit"/>
                                             <br/><br/>
                                             <p>You have already Account So <a href="#" id="unflip-btn"
                                                                               class="signup">Log in</a></p>
@@ -145,13 +151,13 @@
                     </div>
                 </div>
             </div>
-            <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-            <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-            <script type="text/javascript" src="templates/styleJS/forStylesLogin.js"></script>
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"/>
+            <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"/>
+            <script type="text/javascript" src="templates/styleJS/forStylesLogin.js"/>
             <script type="text/javascript"
-                    src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Flip/1.0.18/jquery.flip.js"></script>
-            <script type="text/javascript" src="JavaScript/checkServices.js"></script>
-            <script type="text/javascript" src="JavaScript/facebookSignIn.js"></script>
+                    src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Flip/1.0.18/jquery.flip.js"/>
+            <script type="text/javascript" src="JavaScript/checkServices.js"/>
+            <script type="text/javascript" src="JavaScript/facebookSignIn.js"/>
 
 
         </h:body>

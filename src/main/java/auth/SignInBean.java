@@ -3,16 +3,17 @@ package auth;
 import auth.domain.*;
 import dbService.UserManagerBean;
 import domain.UserEntity;
-import org.apache.commons.lang3.StringUtils;
 import userProfile.User;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Stateless
-public class AuthenticateBean {
+public class SignInBean {
 
     public enum SignInResult {
         INCORECT_EMAIL,
@@ -24,37 +25,32 @@ public class AuthenticateBean {
     private EntityManager entityManager;
 
 
-    public  SignInResult doSignIn(String email, String password) {
-        if (email == null || email.isEmpty()){
-            return SignInResult.INCORECT_EMAIL;
+    public  boolean doSignIn(UserBean user) {
+
+        LocalDateTime visit;
+        if (user.getEmail().isEmpty()){
+            return false;
         }
-        if (password.isEmpty()) {
-            return SignInResult.INCORECT_PASSWORD;
+        if (user.getPassword().isEmpty()) {
+            return false;
         }
 
-        UserEntity userEntity = entityManager.find(UserEntity.class, email);
+        UserEntity userEntity = entityManager.find(UserEntity.class, user.getEmail());
         if (userEntity == null) {
-            return SignInResult.INCORECT_EMAIL;
+            return false;
         }
 
-        if (!password.equals(userEntity.getPassword())) {
-            return SignInResult.INCORECT_PASSWORD;
+        if (!user.getPassword().equals(userEntity.getPassword())) {
+            return false;
         }
 
-        return SignInResult.SUCCESS;
+        visit = userEntity.getLastVisit();
+        user = userEntity.toDto();
+        user.setLastVisit(visit);
+
+        return true;
     }
 
-    public void doSingUp(String email, String pass, String firstName, String lastName, int gender) {
-        User user = new User();
-        user.setEmail(email);
-        user.setPassword(pass);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setGender(gender);
-
-        UserManagerBean userManagerBean = new UserManagerBean();
-        userManagerBean.create(user);
-    }
 
     public boolean isGranted(String email, String resource) {
 
@@ -78,13 +74,13 @@ public class AuthenticateBean {
         }
 
         for (PersonRoleEntity pRole: personRole) {
-            RoleEntity role = pRole.getRoleEntity();
+            Role role = pRole.getRole();
             if (role == null) {
                 continue;
             }
 
-            List<RightsEntity> rightsEntities =  role.getRights();
-            for (RightsEntity right: rightsEntities) {
+            List<Rights> rightsEntities =  role.getRights();
+            for (Rights right: rightsEntities) {
                 if (right == null) {
                     continue;
                 }

@@ -1,28 +1,31 @@
 package auth;
 
 
+
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import java.io.IOException;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Named
 @SessionScoped
 public class UserBean implements Serializable {
 
+    @GeneratedValue(strategy = GenerationType.AUTO) //Автоматическая генерация ID
     private long id;
     private long rating;
     private long fbId;
 
     private int gender;
-    private int age;
 
     private boolean active;
 
-    private String initialRequestURI;
+   // private String initialRequestURI;
 
     private String email;
     private String password;
@@ -37,28 +40,52 @@ public class UserBean implements Serializable {
     private String photos;
     private String bio;
     private String tags;
-    private Date birthdate;
-    private Date lastVisit;
+    private LocalDate birthdate;
+    private String birth;
+    private LocalDateTime lastVisit;
+
+    public UserBean() {
+        rating = 0;
+        fbId = 0;
+        gender = 0;
+        active = false;
+        birth = "";
+        email = "";
+        password = "";
+        firstName = "";
+        lastName = "";
+        sexOrientation = "";
+        longitude = "";
+        latitude = "";
+        city = "";
+        country = "";
+        avatar = "";
+        photos = "";
+        bio = "";
+        tags = "";
+        lastVisit = LocalDateTime.now();
+    }
 
     @EJB
-    private AuthenticateBean authenticateBean;
+    private SignInBean signInBean;
 
-    public void doEmail() {
+    @EJB
+    private SignUpBean signUpBean;
+
+    public boolean doSignIn() {
         if (email == null || password == null) {
-            return;
+            return false;
         }
-        active = authenticateBean.doSignIn(email, password) == AuthenticateBean.SignInResult.SUCCESS;
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect(initialRequestURI);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        return signInBean.doSignIn(this);
     }
 
-    public void doSignUp() {
-        authenticateBean.doSingUp(email, password, firstName, lastName, gender);
+    public boolean doSignUp() {
+        return signUpBean.doSignUp(this);
     }
+
+
+
+
 
     public long getId() {
         return id;
@@ -90,14 +117,6 @@ public class UserBean implements Serializable {
 
     public void setGender(int gender) {
         this.gender = gender;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public boolean isActive() {
@@ -212,27 +231,29 @@ public class UserBean implements Serializable {
         this.tags = tags;
     }
 
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 
-    public Date getLastVisit() {
+    public LocalDateTime getLastVisit() {
         return lastVisit;
     }
 
-    public void setLastVisit(Date lastVisit) {
+    public void setLastVisit(LocalDateTime lastVisit) {
         this.lastVisit = lastVisit;
     }
 
-    public String getInitialRequestURI() {
-        return initialRequestURI;
+    public String getBirth() {
+        return birth;
     }
 
-    public void setInitialRequestURI(String initialRequestURI) {
-        this.initialRequestURI = initialRequestURI;
+    public void setBirth(String birth) {
+        this.birth = birth;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.setBirthdate(LocalDate.parse(birth, formatter));
     }
 }

@@ -11,7 +11,7 @@ public class ResourceEntity {
     private String id;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "resourceEntity")
-    private List<RightsEntity> rights;
+    private List<Rights> rights;
 
     public String getId() {
         return id;
