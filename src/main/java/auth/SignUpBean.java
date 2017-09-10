@@ -1,5 +1,6 @@
 package auth;
 
+import com.sun.imageio.plugins.jpeg.JPEGImageWriterResources;
 import dbService.UserManagerBean;
 import domain.UserEntity;
 import userProfile.User;
@@ -7,6 +8,7 @@ import userProfile.User;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import java.io.File;
 
 @Stateless
 public class SignUpBean {
@@ -22,7 +24,11 @@ public class SignUpBean {
         }
         existingUserProfile = new UserEntity();
         existingUserProfile.fromDto(user);
+        if (!new File("AppMatchaJSF/resources/users/" + user.getEmail()).exists()) {
+            new File("AppMatchaJSF/resources/users/" + user.getEmail()).mkdir();
+        }
         entityManager.persist(existingUserProfile);
+
         return true;
     }
 }

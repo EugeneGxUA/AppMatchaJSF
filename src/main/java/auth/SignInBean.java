@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
 @Stateless
 public class SignInBean {
 
@@ -44,8 +45,8 @@ public class SignInBean {
             return false;
         }
 
-        visit = userEntity.getLastVisit();
-        user = userEntity.toDto();
+        visit = user.getLastVisit();
+        user = userEntity.toDto(user); //TODO не создавать новый класс а принимать имеющийся
         user.setLastVisit(visit);
 
         return true;

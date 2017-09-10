@@ -7,6 +7,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.servlet.http.Part;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -43,6 +44,8 @@ public class UserBean implements Serializable {
     private LocalDate birthdate;
     private String birth;
     private LocalDateTime lastVisit;
+    private Part avatarFile;
+
 
     public UserBean() {
         rating = 0;
@@ -72,15 +75,28 @@ public class UserBean implements Serializable {
     @EJB
     private SignUpBean signUpBean;
 
+    @EJB
+    private ProfileUpdateBean profileUpdateBean;
+
     public boolean doSignIn() {
         if (email == null || password == null) {
             return false;
         }
-        return signInBean.doSignIn(this);
+
+        if (signInBean.doSignIn(this)) {
+            this.toString();
+            return true;
+        }
+        return false;
     }
 
     public boolean doSignUp() {
         return signUpBean.doSignUp(this);
+    }
+
+    public boolean doProfileUpdate() {
+        profileUpdateBean.doProfileUpdate(this);
+        return true;
     }
 
 
@@ -255,5 +271,37 @@ public class UserBean implements Serializable {
         this.birth = birth;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.setBirthdate(LocalDate.parse(birth, formatter));
+    }
+
+    public Part getAvatarFile() {
+        return avatarFile;
+    }
+
+    public void setAvatarFile(Part avatarFile) {
+        this.avatarFile = avatarFile;
+    }
+
+    @Override
+    public String toString() {
+        return "E-mail: " + getEmail() + "\n" +
+                "Password: " + getPassword() + "\n" +
+                "FirstName: " + getFirstName() + "\n" +
+                "LastName: " + getLastName() + "\n" +
+                "Gender: " + getGender() + "\n" +
+                "Orientation: " + getSexOrientation() + "\n" +
+                "Rating: " + getRating() + "\n" +
+                "Avatar: " + getAvatar() + "\n" +
+                "Photos: " + getPhotos() + "\n" +
+                "BIO: " + getBio() + "\n" +
+                "Interests: " + getTags() + "\n" +
+                "Birth Date: " + getBirthdate() + "\n" +
+                "Last Online Date: " + getLastVisit() + "\n" +
+                "latitude: " + getLatitude() + "\n" +
+                "longitude: " + getLongitude() + "\n" +
+                "country: " + getCountry() + "\n" +
+                "city: " + getCity() + "\n" +
+                "FB_ID: " + getFbId() + "\n" +
+                "Active ? : " + isActive() + "\n" +
+                "ID: " + getId() + "\n";
     }
 }

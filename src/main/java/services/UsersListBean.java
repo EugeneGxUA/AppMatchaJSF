@@ -18,7 +18,8 @@ public class UsersListBean implements Serializable {
     @EJB
     private UserManagerBean userManagerBean;
 
-    public List<UserBean> getUsers() {
-        return userManagerBean.readList(0, 100);
-    }
+//    public List<UserBean> getUsers() {
+//        return userManagerBean.readList(0, 100);
+//
+//    }
 }

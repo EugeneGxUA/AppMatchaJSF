@@ -17,59 +17,7 @@
     </ui:define>
 
     <ui:define name="page_body">
-        <p:panel>
-            <p:dataTable value="#{usersListBean.users}" var="user" >
-                <p:column>
-                    <h:outputText value="#{user.id}" />
-                </p:column>
-
-                <p:column>
-                    <h:outputText value="#{user.email}" />
-                </p:column>
-
-                <p:column>
-                    <h:outputText value="#{user.firstName}" />
-                </p:column>
-
-                <p:column>
-                    <h:outputText value="#{user.lastName}" />
-                </p:column>
-
-                <p:column>
-                    <h:outputText value="#{user.age}" />
-                </p:column>
-
-                <p:column>
-                    <h:outputText value="#{user.gender}" />
-                </p:column>
-
-                <p:column>
-                    <h:outputText value="#{user.longitude}" />
-                </p:column>
-
-                <p:column>
-                    <h:outputText value="#{user.latitude}" />
-                </p:column>
-                <p:column>
-                    <h:outputText value="#{user.city}" />
-                </p:column>
-                <p:column>
-                    <h:outputText value="#{user.country}" />
-                </p:column>
-                <p:column>
-                    <h:outputText value="#{user.fbId}" />
-                </p:column>
-                <p:column>
-                    <h:outputText value="#{user.password}" />
-                </p:column>
-                <p:column>
-                    <h:outputText value="#{user.photos}" />
-                </p:column>
-                <p:column>
-                    <h:outputText value="#{user.active}" />
-                </p:column>
-            </p:dataTable>
-        </p:panel>
+       <h:outputText value="Hello user of Matcha - #{userBean.firstName} #{userBean.lastName}"/>
     </ui:define>
 </ui:composition>
 </html>

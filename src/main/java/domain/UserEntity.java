@@ -31,7 +31,9 @@ public class UserEntity {
 
 
 
-    @GeneratedValue(strategy = GenerationType.AUTO) //Автоматическая генерация ID
+
+
+    @Column(name = "id")
     private long id;
 
     private long rating;
@@ -242,26 +244,8 @@ public class UserEntity {
         this.lastVisit = lastVisit;
     }
 
-    //    @Override
-//    public String toString() {
-//        return "E-mail: " + getEmail() + "\n" +
-//                "Password: " + getPassword() + "\n" +
-//                "FirstName: " + getFirstName() + "\n" +
-//                "LastName: " + getLastName() + "\n" +
-//                "Gender: " + getGender() + "\n" +
-//                "Age: " + getAge() + "\n" +
-//                "latitude: " + getLatitude() + "\n" +
-//                "longitude: " + getLongitude() + "\n" +
-//                "country: " + getCountry() + "\n" +
-//                "city: " + getCity() + "\n" +
-//                "Photo: " + getPhoto() + "\n" +
-//                "FB_ID: " + getFbId() + "\n" +
-//                "Active ? : " + getActive() + "\n" +
-//                "ID: " + getId() + "\n";
-//    }
 
-    public UserBean toDto() {
-        UserBean user = new UserBean();
+    public UserBean toDto(UserBean user) {
 
         user.setEmail(this.getEmail());
         user.setPassword(this.getPassword());
