@@ -24,8 +24,8 @@ public class SignUpBean {
         }
         existingUserProfile = new UserEntity();
         existingUserProfile.fromDto(user);
-        if (!new File("AppMatchaJSF/resources/users/" + user.getEmail()).exists()) {
-            new File("AppMatchaJSF/resources/users/" + user.getEmail()).mkdir();
+        if (!new File(getClass().getClassLoader().getResource("users") + user.getEmail()).exists()) {
+            new File(getClass().getClassLoader().getResource("users") + user.getEmail()).mkdir();
         }
         entityManager.persist(existingUserProfile);
 

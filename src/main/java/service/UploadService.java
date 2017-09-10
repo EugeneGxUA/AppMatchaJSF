@@ -64,7 +64,9 @@ public class UploadService {
         try {
 
             String fileName = filePart.getName().toString();
-            Path path = Paths.get("res/users/" + user.getEmail() + "/" + user.getEmail() + ".jpg");
+            String path1 = Paths.get(getClass().getClassLoader().getResource("users/") + user.getEmail() + "/" + user.getEmail() + ".jpg").toString();
+            //TODO fix null to file path
+            Path path = Paths.get(getClass().getClassLoader().getResource("users/") + user.getEmail() + "/" + user.getEmail() + ".jpg");
             if (new File(path.toString()).exists()) {
                 Files.delete(path);
             }
