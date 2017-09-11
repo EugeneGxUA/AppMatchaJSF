@@ -1,9 +1,12 @@
 package service;
 
 import auth.UserBean;
+import com.sun.tools.internal.ws.wsdl.document.jaxws.Exception;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -64,9 +67,10 @@ public class UploadService {
         try {
 
             String fileName = filePart.getName().toString();
-            String path1 = Paths.get(getClass().getClassLoader().getResource("users/") + user.getEmail() + "/" + user.getEmail() + ".jpg").toString();
-            //TODO fix null to file path
-            Path path = Paths.get(getClass().getClassLoader().getResource("users/") + user.getEmail() + "/" + user.getEmail() + ".jpg");
+            ExternalContext extContext = FacesContext.getCurrentInstance().getExternalContext();
+
+            //Path path = Paths.get(extContext.getRealPath("/WEB-INF/users/" + user.getEmail() + "/" + user.getEmail() + ".jpg"));
+            Path path = Paths.get("/private/tmp/library.egaragul/Containers/users/" + user.getEmail() + "/" + user.getEmail() + ".jpg");
             if (new File(path.toString()).exists()) {
                 Files.delete(path);
             }
