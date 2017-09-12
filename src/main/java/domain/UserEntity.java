@@ -30,10 +30,6 @@ public class UserEntity {
     }
 
 
-
-
-
-    @Column(name = "id")
     private long id;
 
     private long rating;
@@ -55,7 +51,10 @@ public class UserEntity {
     private String city;
     private String country;
     private String avatar;
-    private String photos;
+    private String photo1;
+    private String photo2;
+    private String photo3;
+    private String photo4;
     private String bio;
     private String tags;
     private LocalDate birthdate;
@@ -78,7 +77,10 @@ public class UserEntity {
         city = "";
         country = "";
         avatar = "";
-        photos = "";
+        photo1 = "";
+        photo2 = "";
+        photo3 = "";
+        photo4 = "";
         bio = "";
         tags = "";
         lastVisit = LocalDateTime.now();
@@ -205,11 +207,43 @@ public class UserEntity {
     }
 
     public String getPhotos() {
-        return photos;
+        return photo1;
     }
 
     public void setPhotos(String photos) {
-        this.photos = photos;
+        this.photo1 = photos;
+    }
+
+    public String getPhoto1() {
+        return photo1;
+    }
+
+    public void setPhoto1(String photo1) {
+        this.photo1 = photo1;
+    }
+
+    public String getPhoto2() {
+        return photo2;
+    }
+
+    public void setPhoto2(String photo2) {
+        this.photo2 = photo2;
+    }
+
+    public String getPhoto3() {
+        return photo3;
+    }
+
+    public void setPhoto3(String photo3) {
+        this.photo3 = photo3;
+    }
+
+    public String getPhoto4() {
+        return photo4;
+    }
+
+    public void setPhoto4(String photo4) {
+        this.photo4 = photo4;
     }
 
     public String getBio() {
@@ -256,7 +290,10 @@ public class UserEntity {
         user.setFbId(this.getFbId());
         user.setCity(this.getCity());
         user.setCountry(this.getCountry());
-        user.setPhotos(this.getPhotos());
+        user.setPhoto1(this.getPhoto1());
+        user.setPhoto2(this.getPhoto2());
+        user.setPhoto3(this.getPhoto3());
+        user.setPhoto4(this.getPhoto4());
         user.setLatitude(this.getLatitude());
         user.setLongitude(this.getLongitude());
         user.setActive(this.isActive());
@@ -282,7 +319,10 @@ public class UserEntity {
         this.setFbId(user.getFbId());
         this.setCity(user.getCity());
         this.setCountry(user.getCountry());
-        this.setPhotos(user.getPhotos());
+        this.setPhoto1(user.getPhoto1());
+        this.setPhoto2(user.getPhoto2());
+        this.setPhoto3(user.getPhoto3());
+        this.setPhoto4(user.getPhoto4());
         this.setLatitude(user.getLatitude());
         this.setLongitude(user.getLongitude());
         this.setActive(user.isActive());
@@ -293,6 +333,5 @@ public class UserEntity {
         this.setTags(user.getTags());
         this.setBirthdate(user.getBirthdate());
         this.setLastVisit(user.getLastVisit());
-
     }
 }
