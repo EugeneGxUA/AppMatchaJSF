@@ -26,21 +26,13 @@ public class SignUpBean {
         if (existingUserProfile != null) {
             return false;
         }
+        user.setAuthenticate(true);
         existingUserProfile = new UserEntity();
         existingUserProfile.fromDto(user);
-//        ExternalContext extContext = FacesContext.getCurrentInstance().getExternalContext();
-//        String path = extContext.getRealPath("/WEB-INF/users/" + user.getEmail());
-//
-//        if (!new File(extContext.getRealPath("/WEB-INF/users/")).exists()) {
-//            new File(extContext.getRealPath("/WEB-INF/users/")).mkdir();
-//        }
-//        if (!new File(path).exists()) {
-//            new File(path).mkdir();
-//        }
 
-        Path path = Paths.get("/private/tmp/library.egaragul/Containers/users/" + user.getEmail());
-        if (!new File("/private/tmp/library.egaragul/Containers/users/").exists()){
-            new File("/private/tmp/library.egaragul/Containers/users/").mkdir();
+        Path path = Paths.get("/private/tmp/library.egaragul/Containers/MAPP/apache2/htdocs/users/" + user.getEmail());
+        if (!new File("/private/tmp/library.egaragul/Containers/MAPP/apache2/htdocs/users/").exists()){
+            new File("/private/tmp/library.egaragul/Containers/MAPP/apache2/htdocs/users/").mkdir();
         }
         if (!new File(path.toString()).exists()) {
             new File(path.toString()).mkdir();

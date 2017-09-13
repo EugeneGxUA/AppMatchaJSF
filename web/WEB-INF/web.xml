@@ -18,12 +18,6 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>images</web-resource-name>
-            <url-pattern>/private/tmp/library.egaragul/Containers/users/</url-pattern>
-        </web-resource-collection>
-    </security-constraint>
 
 
 </web-app>

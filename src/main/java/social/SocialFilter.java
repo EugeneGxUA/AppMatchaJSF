@@ -1,4 +1,7 @@
-package auth;
+package social;
+
+import auth.SignInBean;
+import auth.UserBean;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -8,9 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
-@WebFilter(urlPatterns = "/secured/*")
-public class AuthFilter implements Filter {
+@WebFilter(urlPatterns = "/profileSecured/*")
+public class SocialFilter implements Filter {
 
     @EJB
     private SignInBean signInBean;
@@ -27,18 +29,13 @@ public class AuthFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        String resource = request.getRequestURI();
+        //String resource = request.getRequestURI();
 
-        if (!userBean.isActive()) {
-            response.sendRedirect(request.getContextPath() + "/profile.xhtml");
+        if (!userBean.isAuthenticate()) {
+            response.sendRedirect(request.getContextPath() + "/index.xhtml");
             return;
         }
 
-
-//        if (!signInBean.isGranted(userBean.getEmail(), resource)) {
-//            response.sendRedirect("redirect to access denied");
-//            return;
-//        }
 
 
         filterChain.doFilter(servletRequest, servletResponse);
@@ -48,3 +45,4 @@ public class AuthFilter implements Filter {
     public void destroy() {
     }
 }
+

@@ -46,10 +46,18 @@ public class SignInBean {
         }
 
         visit = user.getLastVisit();
-        user = userEntity.toDto(user); //TODO не создавать новый класс а принимать имеющийся
+        user = userEntity.toDto(user);
         user.setLastVisit(visit);
+        user.setAuthenticate(true);
 
         return true;
+    }
+
+    public boolean doMatcha(UserBean user) {
+        if (user.isActive()) {
+            return true;
+        }
+        return false;
     }
 
 

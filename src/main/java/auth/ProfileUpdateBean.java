@@ -32,7 +32,7 @@ public class ProfileUpdateBean {
             }
             UploadService uploadService = new UploadService();
 
-            uploadService.uploadByForm(user, user.getAvatarFile());
+            uploadService.uploadByForm(user);
             user.setActive(true);
             existUser.fromDto(user);
             entityManager.merge(existUser);
@@ -40,4 +40,17 @@ public class ProfileUpdateBean {
         }
         return false;
     }
+    public boolean doUploadPhoto(UserBean user) {
+
+        if (user.getPhoto1File() != null || user.getPhoto1File() != null || user.getPhoto2File() != null  || user.getPhoto3File() != null  || user.getPhoto4File() != null ) {
+            UploadService uploadService = new UploadService();
+            uploadService.uploadByForm(user);
+            return true;
+        }
+
+
+        return false;
+    }
+
+
 }

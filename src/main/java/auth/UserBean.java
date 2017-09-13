@@ -25,6 +25,7 @@ public class UserBean implements Serializable {
     private int gender;
 
     private boolean active;
+    private boolean authenticate;
 
    // private String initialRequestURI;
 
@@ -48,6 +49,10 @@ public class UserBean implements Serializable {
     private String birth;
     private LocalDateTime lastVisit;
     private Part avatarFile;
+    private Part photo1File;
+    private Part photo2File;
+    private Part photo3File;
+    private Part photo4File;
 
 
     public UserBean() {
@@ -84,6 +89,9 @@ public class UserBean implements Serializable {
     @EJB
     private ProfileUpdateBean profileUpdateBean;
 
+    @EJB
+    private LogOutBean logOutBean;
+
     public boolean doSignIn() {
         if (email == null || password == null) {
             return false;
@@ -102,6 +110,19 @@ public class UserBean implements Serializable {
 
     public boolean doProfileUpdate() {
         profileUpdateBean.doProfileUpdate(this);
+        return true;
+    }
+
+    public boolean doLogOut() {
+        return logOutBean.doLogOut(this);
+    }
+
+    public boolean letsMatcha() {
+        return signInBean.doMatcha(this);
+    }
+
+    public boolean doUploadPhoto() {
+        profileUpdateBean.doUploadPhoto(this);
         return true;
     }
 
@@ -296,6 +317,9 @@ public class UserBean implements Serializable {
     }
 
     public String getBirth() {
+        if (this.birthdate != null) {
+            this.birth = this.birthdate.toString();
+        }
         return birth;
     }
 
@@ -310,7 +334,48 @@ public class UserBean implements Serializable {
     }
 
     public void setAvatarFile(Part avatarFile) {
+
         this.avatarFile = avatarFile;
+    }
+
+    public boolean isAuthenticate() {
+        return authenticate;
+    }
+
+    public void setAuthenticate(boolean authenticate) {
+        this.authenticate = authenticate;
+    }
+
+    public Part getPhoto1File() {
+        return photo1File;
+    }
+
+    public void setPhoto1File(Part photo1File) {
+        this.photo1File = photo1File;
+    }
+
+    public Part getPhoto2File() {
+        return photo2File;
+    }
+
+    public void setPhoto2File(Part photo2File) {
+        this.photo2File = photo2File;
+    }
+
+    public Part getPhoto3File() {
+        return photo3File;
+    }
+
+    public void setPhoto3File(Part photo3File) {
+        this.photo3File = photo3File;
+    }
+
+    public Part getPhoto4File() {
+        return photo4File;
+    }
+
+    public void setPhoto4File(Part photo4File) {
+        this.photo4File = photo4File;
     }
 
     @Override
@@ -323,7 +388,7 @@ public class UserBean implements Serializable {
                 "Orientation: " + getSexOrientation() + "\n" +
                 "Rating: " + getRating() + "\n" +
                 "Avatar: " + getAvatar() + "\n" +
-                "Photos: " + getPhotos() + "\n" +
+                "Photos: " + getPhoto1() + "\n" +
                 "BIO: " + getBio() + "\n" +
                 "Interests: " + getTags() + "\n" +
                 "Birth Date: " + getBirthdate() + "\n" +

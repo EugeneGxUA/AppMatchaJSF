@@ -39,6 +39,7 @@ public class UserEntity {
 
 
     private boolean active;
+    private boolean authenticate;
 
     @Id
     private String email;
@@ -278,6 +279,13 @@ public class UserEntity {
         this.lastVisit = lastVisit;
     }
 
+    public boolean isAuthenticate() {
+        return authenticate;
+    }
+
+    public void setAuthenticate(boolean authenticate) {
+        this.authenticate = authenticate;
+    }
 
     public UserBean toDto(UserBean user) {
 
@@ -304,6 +312,7 @@ public class UserEntity {
         user.setTags(this.getTags());
         user.setBirthdate(this.getBirthdate());
         user.setLastVisit(this.getLastVisit());
+        user.setAuthenticate(this.isAuthenticate());
 
         return user;
     }
@@ -333,5 +342,6 @@ public class UserEntity {
         this.setTags(user.getTags());
         this.setBirthdate(user.getBirthdate());
         this.setLastVisit(user.getLastVisit());
+        this.setAuthenticate(user.isAuthenticate());
     }
 }

@@ -9,7 +9,7 @@
         <navigation-case>
             <from-action>#{userBean.doSignIn}</from-action>
             <from-outcome>true</from-outcome>
-            <to-view-id>/profile.xhtml</to-view-id>
+            <to-view-id>/profileSecured/profile.xhtml</to-view-id>
         </navigation-case>
 
         <navigation-case>
@@ -24,7 +24,7 @@
         <navigation-case>
             <from-action>#{userBean.doSignUp}</from-action>
             <from-outcome>true</from-outcome>
-            <to-view-id>/profile.xhtml</to-view-id>
+            <to-view-id>/profileSecured/profile.xhtml</to-view-id>
         </navigation-case>
 
         <navigation-case>
@@ -35,7 +35,7 @@
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/profile.xhtml</from-view-id>
+        <from-view-id>/profileSecured/profile.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{userBean.doProfileUpdate}</from-action>
             <from-outcome>true</from-outcome>
@@ -45,7 +45,50 @@
         <navigation-case>
             <from-action>#{userBean.doProfileUpdate}</from-action>
             <from-outcome>false</from-outcome>
-            <to-view-id>/profile.xhtml</to-view-id>
+            <to-view-id>/profileSecured/profile.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/profileSecured/profile.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{userBean.doLogOut}</from-action>
+            <from-outcome>true</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/secured/main.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{userBean.doLogOut}</from-action>
+            <from-outcome>true</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/profileSecured/profile.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{userBean.letsMatcha}</from-action>
+            <from-outcome>true</from-outcome>
+            <to-view-id>/secured/main.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+    <navigation-rule>
+        <from-view-id>/profileSecured/profile.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{userBean.doUploadPhoto}</from-action>
+            <from-outcome>true</from-outcome>
+            <to-view-id>/profileSecured/profile.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>#{userBean.doUploadPhoto}</from-action>
+            <from-outcome>false</from-outcome>
+            <to-view-id>/profileSecured/profile.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 

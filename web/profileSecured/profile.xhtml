@@ -20,7 +20,7 @@
         <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet"/>
 
-        <link href="templates/css/profilePage.css" rel="stylesheet"/>
+        <link href="../templates/css/profilePage.css" rel="stylesheet"/>
 
         <link href=" https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.css" rel="stylesheet"/>
     </head>
@@ -35,7 +35,7 @@
                     <div class="profile-section">
 
                         <div class="profile-img-section">
-                            <h:graphicImage value="/images/#{userBean.email}/#{userBean.email}.jpg" class="img-responsive profile-img"/>
+                            <h:graphicImage value="#{userBean.avatar}" class="img-responsive profile-img"/>
                         </div>
                         <div class="text-information">
                             <h:outputText class="main-name" value="#{userBean.firstName} #{userBean.lastName}"/><br />
@@ -47,7 +47,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="active"><a data-toggle="tab" href="#home" ><i class="fa fa-info-circle fa-lg"></i></a></li>
                                 <li><a data-toggle="tab" href="#menu1"><i class="fa fa-users fa-lg"></i></a></li>
-                                <li><a data-toggle="tab" href="#menu2"><i class="fa fa-key fa-lg"></i></a></li>
+                                <!--<li><a data-toggle="tab" href="#menu2"><i class="fa fa-key fa-lg"></i></a></li>-->
                                 <li><a data-toggle="tab" href="#menu3"><i class="fa fa-picture-o fa-lg"></i></a></li>
                             </ul>
 
@@ -55,12 +55,7 @@
                                 <div id="home" class="tab-pane fade in active">
                                     <h:form id="profileForm" enctype="multipart/form-data">
                                     <div class="info-section no-edit-forms">
-                                        <!--<div class="form-group">-->
-                                            <!--<div class="input-group">-->
-                                                <!--<span class="input-group-addon"><i class="fa fa-mobile fa-lg"></i></span>-->
-                                                <!--<h:inputText type="text" class="form-control" name="SexOrientation" a:placeholder="Sex Orientation" value="#{userBean.sexOrientation}"/>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
+
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-envelope-open fa-lg"></i></span>
@@ -139,7 +134,10 @@
                                         </div>
                                         <br/>
                                         <div class="text-right">
-                                            <h:commandButton class="btn btn-primary btn-submit" value="Log uot"/>
+                                            <h:commandButton class="btn btn-primary btn-submit" action="#{userBean.doLogOut}" value="Log out"/>
+                                        </div>
+                                        <div class="text-right">
+                                            <h:commandButton class="btn btn-primary btn-submit" action="#{userBean.letsMatcha}" value="Let's Matcha"/>
                                         </div>
                                     </div>
                                     </h:form>
@@ -183,29 +181,35 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="menu2" class="tab-pane fade">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-key fa-lg"></i></span>
-                                            <h:inputSecret id="email" type="text" class="form-control" name="email" a:placeholder="Password" value="#{userBean.password}"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-key fa-lg"></i></span>
-                                            <h:inputSecret id="email1" type="text" class="form-control" name="email" a:placeholder="Confirm Password"/>
-                                        </div>
-                                    </div>
+                                <!--<div id="menu2" class="tab-pane fade">-->
+                                    <!--<div class="form-group">-->
+                                        <!--<div class="input-group">-->
+                                            <!--<span class="input-group-addon"><i class="fa fa-key fa-lg"></i></span>-->
+                                            <!--<h:inputSecret id="email" type="text" class="form-control" name="email" a:placeholder="Password" value="#{userBean.password}"/>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group">-->
+                                        <!--<div class="input-group">-->
+                                            <!--<span class="input-group-addon"><i class="fa fa-key fa-lg"></i></span>-->
+                                            <!--<h:inputSecret id="email1" type="text" class="form-control" name="email" a:placeholder="Confirm Password"/>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
 
-                                    <div class="text-right">
-                                        <!--TODO create method for change password-->
-                                        <h:commandButton class="btn btn-primary btn-submit" value="Submit"/>
-                                    </div>
-                                </div>
+                                    <!--<div class="text-right">-->
+                                        <!--&lt;!&ndash;TODO create method for change password&ndash;&gt;-->
+                                        <!--<h:commandButton class="btn btn-primary btn-submit" value="Submit"/>-->
+                                    <!--</div>-->
+                                <!--</div>-->
                                 <div id="menu3" class="tab-pane fade">
                                     <!--TODO create method for photos upload-->
                                     <div class="upload-image">
 
+
+                                        <h:form enctype="multipart/form-data">
+                                            <h:graphicImage value="#{userBean.photo1}" class="img-responsive profile-img" alt="Photo 1"/>
+                                            <h:inputFile  description="Select Avatar" value="#{userBean.photo1File}" sizeLimit="100000" allowsType="/(\.|\/)(jpg)$/"/>
+                                            <h:commandButton  class="btn-primary btn btn-submit" value="Submit" action="#{userBean.doUploadPhoto}"/>
+                                        </h:form>
                                     </div>
                                 </div>
                             </div>
