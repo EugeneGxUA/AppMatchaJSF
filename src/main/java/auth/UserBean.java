@@ -2,6 +2,8 @@ package auth;
 
 
 
+import com.google.gson.Gson;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -124,6 +126,13 @@ public class UserBean implements Serializable {
     public boolean doUploadPhoto() {
         profileUpdateBean.doUploadPhoto(this);
         return true;
+    }
+
+    //TODO -> finish work with JSON Location
+    public void getClosestStations() {
+        String[] strings = {"abc", "def", "ghi"};
+        Gson gson = new Gson();
+
     }
 
 

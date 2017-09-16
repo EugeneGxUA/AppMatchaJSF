@@ -34,6 +34,7 @@ public class ProfileUpdateBean {
 
             uploadService.uploadByForm(user);
             user.setActive(true);
+            user.setId(existUser.getId());
             existUser.fromDto(user);
             entityManager.merge(existUser);
             return true;
@@ -42,9 +43,17 @@ public class ProfileUpdateBean {
     }
     public boolean doUploadPhoto(UserBean user) {
 
-        if (user.getPhoto1File() != null || user.getPhoto1File() != null || user.getPhoto2File() != null  || user.getPhoto3File() != null  || user.getPhoto4File() != null ) {
+        if (user.getPhoto1File() != null || user.getPhoto2File() != null  || user.getPhoto3File() != null  || user.getPhoto4File() != null ) {
+            UserEntity existUser = entityManager.find(UserEntity.class, user.getEmail());
+            if (existUser == null) {
+                return false;
+            }
+
             UploadService uploadService = new UploadService();
             uploadService.uploadByForm(user);
+
+            existUser.fromDto(user);
+            entityManager.merge(existUser);
             return true;
         }
 

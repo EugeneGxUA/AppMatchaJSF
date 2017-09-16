@@ -4,20 +4,8 @@
         <jta-data-source>PostgreSqlDS</jta-data-source>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update" />
-            <property name="hibernate.show_sql" value="екгу" />
+            <property name="hibernate.show_sql" value="false" />
             <property name="hibernate.format_sql" value="false" />
-            <property name="openjpa.jdbc.DBDictionary" value="oracle" />
-            <property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE"/>
-            <property name="openjpa.AutoDetach" value="close" />
-            <property name="openjpa.DetachState" value="loaded" />
-            <property name="openjpa.DataCache" value="false" />
-            <property name="openjpa.Optimistic" value="true" />
-            <property name="openjpa.Multithreaded" value="true" />
-            <property name="openjpa.TransactionMode" value="managed" />
-            <property name="openjpa.ConnectionFactoryMode" value="managed" />
-            <property name="openjpa.NontransactionalRead" value="true" />
-            <property name="openjpa.RestoreState" value="all" />
-            <property name="openjpa.ManagedRuntime" value="auto" />
         </properties>
     </persistence-unit>
 </persistence>

@@ -49,6 +49,9 @@
                                 <li><a data-toggle="tab" href="#menu1"><i class="fa fa-users fa-lg"></i></a></li>
                                 <!--<li><a data-toggle="tab" href="#menu2"><i class="fa fa-key fa-lg"></i></a></li>-->
                                 <li><a data-toggle="tab" href="#menu3"><i class="fa fa-picture-o fa-lg"></i></a></li>
+                                <h:form>
+                                    <h:commandButton  action="#{userBean.letsMatcha}" value="Let's Matcha"/>
+                                </h:form>
                             </ul>
 
                             <div class="tab-content">
@@ -99,6 +102,13 @@
                                                 <h:inputText  type="text" class="form-control" name="email" a:placeholder="Country" value="#{userBean.country}"/>
                                             </div>
                                         </div>
+                                        <!--<div class="form-group">-->
+                                            <!--<div class="input-group">-->
+                                                <!--<span class="input-group-addon"><i class="fa fa-map-marker fa-lg"></i></span>-->
+                                                <!--<h:commandButton value="Auto check" onclick=""/>-->
+                                               <!--<h:outputText value="#{userBean.getClosestStations(param.longitude, param.latitude)}" escape="false"/>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-id-card fa-lg"></i></span>
@@ -203,14 +213,37 @@
                                 <div id="menu3" class="tab-pane fade">
                                     <!--TODO create method for photos upload-->
                                     <div class="upload-image">
-
-
+                                        <h:graphicImage value="#{userBean.photo1}" width="200px" height="200px" alt="Photo 1"/>
                                         <h:form enctype="multipart/form-data">
-                                            <h:graphicImage value="#{userBean.photo1}" class="img-responsive profile-img" alt="Photo 1"/>
                                             <h:inputFile  description="Select Avatar" value="#{userBean.photo1File}" sizeLimit="100000" allowsType="/(\.|\/)(jpg)$/"/>
                                             <h:commandButton  class="btn-primary btn btn-submit" value="Submit" action="#{userBean.doUploadPhoto}"/>
                                         </h:form>
                                     </div>
+                                    <hr/>
+                                    <div class="upload-image">
+                                        <h:graphicImage value="#{userBean.photo2}" width="200px" height="200px" alt="Photo 1"/>
+                                        <h:form enctype="multipart/form-data">
+                                            <h:inputFile  description="Select Avatar" value="#{userBean.photo2File}" sizeLimit="100000" allowsType="/(\.|\/)(jpg)$/"/>
+                                            <h:commandButton  class="btn-primary btn btn-submit" value="Submit" action="#{userBean.doUploadPhoto}"/>
+                                        </h:form>
+                                    </div>
+                                    <hr/>
+                                    <div class="upload-image">
+                                        <h:graphicImage value="#{userBean.photo3}" width="200px" height="200px" alt="Photo 1"/>
+                                        <h:form enctype="multipart/form-data">
+                                            <h:inputFile  description="Select Avatar" value="#{userBean.photo3File}" sizeLimit="100000" allowsType="/(\.|\/)(jpg)$/"/>
+                                            <h:commandButton  class="btn-primary btn btn-submit" value="Submit" action="#{userBean.doUploadPhoto}"/>
+                                        </h:form>
+                                    </div>
+                                    <hr/>
+                                    <div class="upload-image">
+                                        <h:graphicImage value="#{userBean.photo4}" width="200px" height="200px" alt="Photo 1"/>
+                                        <h:form enctype="multipart/form-data">
+                                            <h:inputFile  description="Select Avatar" value="#{userBean.photo4File}" sizeLimit="100000" allowsType="/(\.|\/)(jpg)$/"/>
+                                            <h:commandButton  class="btn-primary btn btn-submit" value="Submit" action="#{userBean.doUploadPhoto}"/>
+                                        </h:form>
+                                    </div>
+                                    <hr/>
                                 </div>
                             </div>
 
@@ -227,7 +260,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-
+    <script type="text/javascript" src="JavaScript/facebookSignIn.js"/>
 
     <!--<script type="text/javascript" src="templates/styleJS/profileJs.js"/>-->
     </body>

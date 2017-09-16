@@ -80,10 +80,7 @@ public class UploadService {
                 }
             }
             if (user.getPhoto1File() != null) {
-                Instant time = Instant.now();
-
-                Path photoPath = Paths.get("http://localhost:9995/users/" + user.getEmail() + "/" + time + ".jpg");
-                Path path = Paths.get("/private/tmp/library.egaragul/Containers/MAPP/apache2/htdocs/users/" + user.getEmail() + "/" + time.toString() + ".jpg");
+                Path path = Paths.get("/private/tmp/library.egaragul/Containers/MAPP/apache2/htdocs/users/" + user.getEmail() + "/photo1.jpg");
                 if (new File(path.toString()).exists()) {
                     Files.delete(path);
                 }
@@ -91,15 +88,12 @@ public class UploadService {
                     Files.createFile(path);
                     BufferedInputStream reader = new BufferedInputStream(user.getPhoto1File().getInputStream());
                     this.upload(path, reader);
-                    user.setPhoto1(photoPath.toString());
+                    user.setPhoto1("http://localhost:9995/users/" + user.getEmail() + "/photo1.jpg");
                     user.setPhoto1File(null);
                 }
             }
             if (user.getPhoto2File() != null) {
-                Instant time = Instant.now();
-
-                Path photoPath = Paths.get("http://localhost:9995/users/" + user.getEmail() + "/" + time + ".jpg");
-                Path path = Paths.get("/private/tmp/library.egaragul/Containers/MAPP/apache2/htdocs/users/" + user.getEmail() + "/" + time.toString() + ".jpg");
+                Path path = Paths.get("/private/tmp/library.egaragul/Containers/MAPP/apache2/htdocs/users/" + user.getEmail() + "/photo2.jpg");
                 if (new File(path.toString()).exists()) {
                     Files.delete(path);
                 }
@@ -107,15 +101,12 @@ public class UploadService {
                     Files.createFile(path);
                     BufferedInputStream reader = new BufferedInputStream(user.getPhoto2File().getInputStream());
                     this.upload(path, reader);
-                    user.setPhoto2(photoPath.toString());
+                    user.setPhoto2("http://localhost:9995/users/" + user.getEmail() + "/photo2.jpg");
                     user.setPhoto2File(null);
                 }
             }
             if (user.getPhoto3File() != null) {
-                Instant time = Instant.now();
-
-                Path photoPath = Paths.get("http://localhost:9995/users/" + user.getEmail() + "/" + time + ".jpg");
-                Path path = Paths.get("/private/tmp/library.egaragul/Containers/MAPP/apache2/htdocs/users/" + user.getEmail() + "/" + time.toString() + ".jpg");
+                Path path = Paths.get("/private/tmp/library.egaragul/Containers/MAPP/apache2/htdocs/users/" + user.getEmail() + "/photo3.jpg");
                 if (new File(path.toString()).exists()) {
                     Files.delete(path);
                 }
@@ -123,23 +114,20 @@ public class UploadService {
                     Files.createFile(path);
                     BufferedInputStream reader = new BufferedInputStream(user.getPhoto3File().getInputStream());
                     this.upload(path, reader);
-                    user.setPhoto3(photoPath.toString());
+                    user.setPhoto3("http://localhost:9995/users/" + user.getEmail() + "/photo3.jpg");
                     user.setPhoto3File(null);
                 }
             }
             if (user.getPhoto4File() != null) {
-                Instant time = Instant.now();
-
-                Path photoPath = Paths.get("http://localhost:9995/users/" + user.getEmail() + "/" + time + ".jpg");
-                Path path = Paths.get("/private/tmp/library.egaragul/Containers/MAPP/apache2/htdocs/users/" + user.getEmail() + "/" + time.toString() + ".jpg");
+                Path path = Paths.get("/private/tmp/library.egaragul/Containers/MAPP/apache2/htdocs/users/" + user.getEmail() + "/" + "/photo4.jpg");
                 if (new File(path.toString()).exists()) {
                     Files.delete(path);
                 }
                 if (!new File(path.toString()).exists()) {
                     Files.createFile(path);
-                    BufferedInputStream reader = new BufferedInputStream(user.getPhoto3File().getInputStream());
+                    BufferedInputStream reader = new BufferedInputStream(user.getPhoto4File().getInputStream());
                     this.upload(path, reader);
-                    user.setPhoto4(photoPath.toString());
+                    user.setPhoto4("http://localhost:9995/users/" + user.getEmail() + "/photo4.jpg");
                     user.setPhoto4File(null);
                 }
             }

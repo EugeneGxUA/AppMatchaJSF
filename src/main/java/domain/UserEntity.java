@@ -3,6 +3,8 @@ package domain;
 
 import auth.UserBean;
 import auth.domain.PersonRoleEntity;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 import userProfile.User;
 
 import javax.persistence.*;
@@ -29,7 +31,8 @@ public class UserEntity {
         this.personRoleEntities = personRoleEntities;
     }
 
-
+    @Column(name = "id", columnDefinition = "serial")
+    @Generated(GenerationTime.INSERT)
     private long id;
 
     private long rating;

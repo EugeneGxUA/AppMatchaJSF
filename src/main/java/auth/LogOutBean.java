@@ -3,6 +3,7 @@ package auth;
 import domain.UserEntity;
 
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
@@ -20,6 +21,7 @@ public class LogOutBean {
         if (existUser != null) {
             existUser.fromDto(user);
             entityManager.merge(existUser);
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
             return true;
         }
 
