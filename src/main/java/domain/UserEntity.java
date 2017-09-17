@@ -2,16 +2,14 @@ package domain;
 
 
 import auth.UserBean;
-import auth.domain.PersonRoleEntity;
+import auth.domain.DislikeEntity;
+import auth.domain.LikesEntity;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
-import userProfile.User;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 
@@ -20,18 +18,31 @@ import java.util.List;
 public class UserEntity {
 
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "user")
-    private List<PersonRoleEntity> personRoleEntities;
+    //
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, mappedBy = "userEntity")
+    private List<LikesEntity> likesEntities;
 
-    public List<PersonRoleEntity> getPersonRoleEntities() {
-        return personRoleEntities;
+    public List<LikesEntity> getLikesEntities() {
+        return likesEntities;
     }
 
-    public void setPersonRoleEntities(List<PersonRoleEntity> personRoleEntities) {
-        this.personRoleEntities = personRoleEntities;
+    public void setLikesEntities(List<LikesEntity> likesEntities) {
+        this.likesEntities = likesEntities;
     }
 
-    @Column(name = "id", columnDefinition = "serial")
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, mappedBy = "userEntity")
+    private List<DislikeEntity> dislikeEntities;
+
+    public List<DislikeEntity> getDislikeEntities() {
+        return dislikeEntities;
+    }
+
+    public void setDislikeEntities(List<DislikeEntity> dislikeEntities) {
+        this.dislikeEntities = dislikeEntities;
+    }
+
+    @Column(name = "id", columnDefinition = "serial")//Автоматическая генерация ID
     @Generated(GenerationTime.INSERT)
     private long id;
 

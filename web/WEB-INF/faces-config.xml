@@ -39,7 +39,7 @@
         <navigation-case>
             <from-action>#{userBean.doProfileUpdate}</from-action>
             <from-outcome>true</from-outcome>
-            <to-view-id>/secured/main.xhtml</to-view-id>
+            <to-view-id>/profileSecured/profile.xhtml</to-view-id>
         </navigation-case>
 
         <navigation-case>
@@ -91,5 +91,8 @@
             <to-view-id>/profileSecured/profile.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+
+
+
 
 </faces-config>

@@ -66,7 +66,10 @@
                         </div>
                     </div>
                     <h:form>
-                        <h:commandButton value="Like" />
+
+                        <h:commandButton value="Like" action="#{likeService.doLike(user.email)}">
+                            <f:ajax listener="#{likeService.doLike}" event="click"/>
+                        </h:commandButton>
                         <h:commandButton value="Alert" />
                         <h:commandButton value="Block" />
                         <h:commandButton value="Dislike" />

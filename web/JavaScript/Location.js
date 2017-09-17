@@ -1,4 +1,6 @@
 function checkLocation() {
+    $('input[name="profileForm:j_idt30"]').attr('readonly', 'readonly');
+    $('input[name="profileForm:j_idt32"]').attr('readonly', 'readonly');
     var UserPosition = {
         latitude: '',
         longitude: '',
@@ -26,25 +28,16 @@ function checkLocation() {
             UserPosition.city = location.city;
         });
     }
+    setTimeout(function(){
+        console.log(UserPosition.city);
+        console.log(UserPosition.country);
+        console.log(UserPosition.latitude);
+        console.log(UserPosition.longitude);
+        document.getElementById('profileForm:latitude').value = UserPosition.latitude;
+        document.getElementById('profileForm:longitude').value = UserPosition.longitude;
+        document.getElementById('profileForm:city').value = UserPosition.city;
+        document.getElementById('profileForm:country').value = UserPosition.country;
+    }, 2000);
 
-    $.ajax({
-        url: requestContextPath + '/profileSecured/profile.xhtml',
-        type: "GET",
-        data: {
-            "longitude": UserPosition.longitude,
-            "latitude": UserPosition.latitude,
-            "city": UserPosition.city,
-            "country": UserPosition.country
-        },
-        dataType: "json",
-        success: function (data) {
-            $.each(data, function (i, station) {
-            console.log(i);
-            console.log(station);
-            });
-        },
-        error: function () {
-        console.log("error");
-        }
-    });
+
 }

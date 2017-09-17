@@ -1,13 +1,11 @@
-package services;
+package mainPageServices;
 
 
-import auth.LogOutBean;
 import auth.UserBean;
 import dbService.CrudManager;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;

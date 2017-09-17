@@ -16,7 +16,6 @@ public class ProfileUpdateBean {
 
     public boolean doProfileUpdate(UserBean user) {
         if (!user.getEmail().isEmpty() &&
-                !user.getAvatarFile().getName().isEmpty() &&
                 !user.getBio().isEmpty() &&
                 !user.getFirstName().isEmpty() &&
                 !user.getLastName().isEmpty() &&
@@ -24,7 +23,9 @@ public class ProfileUpdateBean {
                 !user.getCountry().isEmpty() &&
                 !user.getSexOrientation().isEmpty() &&
                 !user.getBirth().isEmpty() &&
-                !user.getTags().isEmpty()) {
+                !user.getTags().isEmpty() &&
+                (user.getAvatarFile() != null ||
+                        !user.getAvatar().isEmpty())) {
 
             UserEntity existUser = entityManager.find(UserEntity.class, user.getEmail());
             if (existUser == null) {
